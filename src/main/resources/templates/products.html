@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="/" method="get">
+    Поиск по названию объявления: <input type="text" name="name"><br>
+    <input type="submit" value="Поиск"/>
+</form>
+<ul>
+    <li th:each="product : ${products}">
+        <b name="name" th:text="${product.name}"></b>
+        <b th:text="${product.city}"></b>
+        <b th:text="${product.price}"></b>
+        <a th:href="@{'/product/' + ${product.id}}">Подробнее...</a></p>
+        </div>
+    </li>
+
+</ul>
+<form th:action="@{/product/create}" th:object="${newProduct}" method="post">
+    Название товара: <input th:field="*{name}" type="text" name="name"/><br><br>
+    Описание товара: <input th:field="*{description}" type="text" name="description"/><br><br>
+    Город: <input th:field="*{city}" type="text" name="city"/><br><br>
+    Цена: <input th:field="*{price}" type="number" name="price"/><br><br>
+    <input type="submit" value="Добавить товар"/>
+</form>
+</body>
+</html>
